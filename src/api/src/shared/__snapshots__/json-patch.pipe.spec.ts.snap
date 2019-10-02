@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JsonPatchPipe should be invalid with invalid patch value 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "Operation \`op\` property is not one of operations defined in RFC-6902
+name: OPERATION_OP_INVALID
+index: 0
+operation: {
+  \\"wrong\\": \\"replace\\",
+  \\"path\\": \\"/user/firstName\\",
+  \\"value\\": \\"Albert\\"
+}",
+  "statusCode": 400,
+}
+`;

@@ -1,0 +1,35 @@
+version: "3.6"
+
+volumes:
+  postgres-data:
+  redis-data:
+
+networks:
+  traefik:
+    driver: overlay
+
+services:
+  mongodb:
+
+  postgres:
+    image: postgres:alpine
+    volumes:
+      - ./config/initdb:/docker-entrypoint-initdb.d
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=p@ssw0rd
+
+  pgpouncer:
+    image: mcr.microsoft.com/azure-oss-db-tools/pgbouncer-sidecar:latest
+    ports:
+      - 5432:5432
+    volumes:
+      - ./config/pgbouncer:/etc/pgbouncer/
+    depends_on:
+      - postgres
+
+  redis:
+    image: redis:alpine
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
