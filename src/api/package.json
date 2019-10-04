@@ -37,6 +37,8 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "@entity-factory/core": "^0.2.1",
+    "@entity-factory/typeorm": "^0.2.1",
     "@nestjs/cli": "^6.9.0",
     "@nestjs/schematics": "^6.7.0",
     "@nestjs/testing": "^6.7.1",

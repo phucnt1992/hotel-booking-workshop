@@ -1,10 +1,12 @@
 import {
+  All,
   Body,
   Controller,
   Delete,
   Get,
   HttpCode,
   HttpStatus,
+  NotFoundException,
   Param,
   Patch,
   Post,
@@ -14,17 +16,17 @@ import {
   UnprocessableEntityException,
   UsePipes,
   ValidationPipe,
-  All,
-  NotFoundException,
 } from '@nestjs/common';
 import { Response } from 'express';
 import { EMPTY, Observable, throwError } from 'rxjs';
+import { catchError, concatMap, flatMap, map } from 'rxjs/operators';
+import { Operation } from 'fast-json-patch';
+
+import { JsonPatchPipe } from '../shared/json-patch.pipe';
 
 import { Account } from './account.entity';
 import { AccountService } from './account.sevice';
 import { AccountDto } from './dto/account.dto';
-import { catchError, map, flatMap, concatMap } from 'rxjs/operators';
-import { JsonPatchPipe } from 'src/shared/json-patch.pipe';
 
 const BASE_URL = 'accounts';
 
@@ -74,7 +76,10 @@ export class AccountController {
   }
 
   @Patch('id')
-  public patchOne(@Param('id') id: string, @Body(JsonPatchPipe) jsonPatch) {}
+  public patchOne(
+    @Param('id') id: string,
+    @Body(JsonPatchPipe) jsonPatch: Operation[],
+  ) {}
 
   @All()
   @HttpCode(HttpStatus.METHOD_NOT_ALLOWED)

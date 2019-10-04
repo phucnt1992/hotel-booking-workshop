@@ -1,11 +1,15 @@
+import { TypeormAdapter } from '@entity-factory/typeorm';
+import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
-import { INestApplication } from '@nestjs/common';
+
 import { AccountController } from 'src/account/account.controller';
 import { SharedModule } from 'src/shared/shared.module';
 import { CoreModule } from 'src/core/core.module';
+import { Account } from 'src/account/account.entity';
+import { EntityFactory } from '@entity-factory/core';
 
-describe('AppController (e2e)', () => {
+describe('AccountController (e2e)', () => {
   let app: INestApplication;
 
   beforeAll(async () => {

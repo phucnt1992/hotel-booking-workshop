@@ -1,4 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Account {
@@ -17,10 +23,10 @@ export class Account {
   @Column('bool', { default: true })
   isAdmin: string;
 
-  @Column('datetime', { default: Date.now })
+  @CreateDateColumn()
   created: Date;
 
-  @Column('datetime')
+  @UpdateDateColumn()
   modified: Date;
 
   @Column('text')

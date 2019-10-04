@@ -65,7 +65,6 @@ export class AccountService {
     accountDto: AccountDto,
   ): Observable<Account> {
     account = plainToClass(Account, accountDto);
-    account.modified = new Date();
     return from(this.accountRepository.save(account));
   }
 
