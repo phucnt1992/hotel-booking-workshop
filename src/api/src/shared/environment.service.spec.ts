@@ -20,7 +20,17 @@ describe('EnvironmentService', () => {
     expect(service.isProdEnv()).toBeFalsy();
   });
 
+  it('isProd should return true in prod env', () => {
+    spyOn(service, 'getEnv').and.returnValue('production');
+    expect(service.isTestEnv()).toBeFalsy();
+  });
+
   it('isTest should return true in test env', () => {
     expect(service.isTestEnv()).toBeTruthy();
+  });
+
+  it('isTest should return false in prod env', () => {
+    spyOn(service, 'getEnv').and.returnValue('production');
+    expect(service.isTestEnv()).toBeFalsy();
   });
 });

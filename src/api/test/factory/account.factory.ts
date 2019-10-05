@@ -1,17 +1,20 @@
 import { EntityFactory } from '@entity-factory/core';
 import { TypeormAdapter, TypeormBlueprint } from '@entity-factory/typeorm';
-import { Account } from 'src/account/account.entity';
+import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
+
 import { genSalt, hash } from 'bcrypt';
 
-// or use any valid typeorm connection options
-const typeormAdapter = new TypeormAdapter({
-  type: 'sqlite',
-  database: ':memory:',
-  synchronize: true,
-  entities: [Account],
-});
+import { Account } from 'src/account/account.entity';
 
-export class WidgetBlueprint extends TypeormBlueprint<Account> {
+import { baseTypeormAdapterOptions } from './shared.factory';
+
+const accountTypeormAdapterOptions: PostgresConnectionOptions = {
+  ...baseTypeormAdapterOptions,
+  entities: [Account],
+};
+const accountTypeormAdapter = new TypeormAdapter(accountTypeormAdapterOptions);
+
+class AccountBlueprint extends TypeormBlueprint<Account> {
   constructor() {
     super();
     this.type(Account);
@@ -52,6 +55,6 @@ export class WidgetBlueprint extends TypeormBlueprint<Account> {
 }
 
 export const accountfactory = new EntityFactory({
-  adapter: typeormAdapter,
-  blueprints: {},
+  adapter: accountTypeormAdapter,
+  blueprints: [AccountBlueprint],
 });

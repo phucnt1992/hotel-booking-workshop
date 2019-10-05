@@ -7,5 +7,6 @@
     "**/.DS_Store": true,
     "**/node_modules": true
   },
-  "jest.rootPath": "./src/api"
+  "jest.rootPath": "./src/api",
+  "editor.tabSize": 2
 }

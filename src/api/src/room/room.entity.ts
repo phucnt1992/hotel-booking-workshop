@@ -7,15 +7,15 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Account {
+export class Room {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column('text', { unique: true, nullable: false })
-  username: string;
+  name: string;
 
   @Column('text', { select: false, nullable: false })
-  password: string;
+  description: string;
 
   @Column('text', { select: false, nullable: false })
   salt: string;
