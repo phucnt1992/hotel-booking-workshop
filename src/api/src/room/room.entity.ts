@@ -2,9 +2,15 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
+import { Account } from '../account/account.entity';
+import { Photo } from './photo.entity';
 
 @Entity()
 export class Room {
@@ -12,16 +18,13 @@ export class Room {
   id: string;
 
   @Column('text', { unique: true, nullable: false })
+  slug: string;
+
+  @Column('text')
   name: string;
 
-  @Column('text', { select: false, nullable: false })
+  @Column('text')
   description: string;
-
-  @Column('text', { select: false, nullable: false })
-  salt: string;
-
-  @Column('bool', { default: true })
-  isAdmin: string;
 
   @CreateDateColumn()
   created: Date;
@@ -29,12 +32,15 @@ export class Room {
   @UpdateDateColumn()
   modified: Date;
 
-  @Column('text')
-  firstName: string;
+  @OneToOne(() => Account)
+  @JoinColumn()
+  createdUser: Account;
 
-  @Column('text')
-  lastName: string;
+  @OneToOne(() => Account)
+  @JoinColumn()
+  updatedUser: Account;
 
-  @Column('text')
-  avatarUrl: string;
+  @OneToMany(type => Photo, photo => photo.room, { cascade: true })
+  @JoinColumn()
+  photos: Photo[];
 }

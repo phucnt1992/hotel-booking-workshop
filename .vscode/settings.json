@@ -8,5 +8,6 @@
     "**/node_modules": true
   },
   "jest.rootPath": "./src/api",
+  "typescript.preferences.importModuleSpecifier": "relative",
   "editor.tabSize": 2
 }

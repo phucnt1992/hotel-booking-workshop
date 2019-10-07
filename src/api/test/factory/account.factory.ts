@@ -8,6 +8,8 @@ import { Account } from 'src/account/account.entity';
 
 import { baseTypeormAdapterOptions } from './shared.factory';
 
+export const AdminState = 'admin';
+
 const accountTypeormAdapterOptions: PostgresConnectionOptions = {
   ...baseTypeormAdapterOptions,
   entities: [Account],
@@ -30,7 +32,7 @@ class AccountBlueprint extends TypeormBlueprint<Account> {
       };
     });
 
-    this.state('admin', async ({ faker, factory }) => {
+    this.state(AdminState, async ({ faker, factory }) => {
       const account = this.generateAccount(faker);
       return {
         ...account,

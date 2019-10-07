@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{e985117b-7809-4352-9dc4-5bc912428022}</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectView>ShowAllFiles</ProjectView>
+    <StartupFile />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <EnableTypeScript>true</EnableTypeScript>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">16.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <ItemGroup>
+    <Content Include="package.json" />
+    <Content Include="README.md" />
+    <Content Include="config\pgbouncer\userlist.txt" />
+    <Content Include="src\api\nest-cli.json" />
+    <Content Include="src\api\package-lock.json" />
+    <Content Include="src\api\package.json" />
+    <Content Include="src\api\tsconfig.build.json" />
+    <None Include="src\api\tsconfig.json" />
+    <Content Include="src\api\tslint.json" />
+    <Content Include="src\api\README.md" />
+    <None Include="src\api\src\app.module.ts" />
+    <None Include="src\api\src\main.ts" />
+    <Content Include="src\api\test\jest-e2e.json" />
+    <None Include="src\api\test\account.e2e-spec.ts" />
+    <None Include="src\api\test\app.e2e-spec.ts" />
+    <None Include="src\api\test\booking.e2e-spec.ts" />
+    <None Include="src\api\test\room.e2e-spec.ts" />
+    <None Include="src\api\src\account\account.controller.ts" />
+    <None Include="src\api\src\account\account.entity.ts" />
+    <None Include="src\api\src\account\account.module.ts" />
+    <None Include="src\api\src\account\account.sevice.ts" />
+    <None Include="src\api\src\booking\booking.entity.ts" />
+    <None Include="src\api\src\booking\booking.module.ts" />
+    <None Include="src\api\src\config\db.config.ts" />
+    <None Include="src\api\src\config\logging.config.ts" />
+    <None Include="src\api\src\core\core.module.ts" />
+    <None Include="src\api\src\core\database.service.spec.ts" />
+    <None Include="src\api\src\core\database.service.ts" />
+    <None Include="src\api\src\core\logger.service.spec.ts" />
+    <None Include="src\api\src\core\logger.service.ts" />
+    <None Include="src\api\src\room\room.controller.spec.ts" />
+    <None Include="src\api\src\room\room.controller.ts" />
+    <None Include="src\api\src\room\room.module.ts" />
+    <None Include="src\api\src\room\room.service.spec.ts" />
+    <None Include="src\api\src\room\room.service.ts" />
+    <None Include="src\api\src\shared\crypt.service.spec.ts" />
+    <None Include="src\api\src\shared\crypt.service.ts" />
+    <None Include="src\api\src\shared\environment.service.spec.ts" />
+    <None Include="src\api\src\shared\environment.service.ts" />
+    <None Include="src\api\src\shared\json-patch.pipe.spec.ts" />
+    <None Include="src\api\src\shared\json-patch.pipe.ts" />
+    <None Include="src\api\src\shared\shared.module.ts" />
+    <None Include="src\api\src\account\dto\account.dto.ts" />
+    <None Include="src\api\src\room\entities\photo.entity.ts" />
+    <None Include="src\api\src\room\entities\room.entity.ts" />
+    <None Include="src\api\test\factory\account.factory.ts" />
+    <None Include="src\api\test\factory\booking.factory.ts" />
+    <None Include="src\api\test\factory\room.factory.ts" />
+    <None Include="src\api\test\factory\shared.factory.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="config" />
+    <Folder Include="config\initdb" />
+    <Folder Include="config\pgbouncer" />
+    <Folder Include="src" />
+    <Folder Include="src\api" />
+    <Folder Include="src\api\src" />
+    <Folder Include="src\api\src\account" />
+    <Folder Include="src\api\src\account\dto" />
+    <Folder Include="src\api\src\booking" />
+    <Folder Include="src\api\src\config" />
+    <Folder Include="src\api\src\core" />
+    <Folder Include="src\api\src\room" />
+    <Folder Include="src\api\src\room\entities" />
+    <Folder Include="src\api\src\shared" />
+    <Folder Include="src\api\src\shared\__snapshots__" />
+    <Folder Include="src\api\test" />
+    <Folder Include="src\api\test\factory" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

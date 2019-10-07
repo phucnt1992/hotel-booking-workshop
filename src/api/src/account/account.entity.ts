@@ -28,7 +28,7 @@ export class Account {
 
   @UpdateDateColumn()
   modified: Date;
-
+    
   @Column('text')
   firstName: string;
 

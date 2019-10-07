@@ -17,10 +17,9 @@ describe('CryptService', () => {
     expect(service).toBeDefined();
   });
 
-  it('genSalt should return salt', () => {
-    service.genSalt().subscribe(salt => {
-      expect(salt).toBeInstanceOf(typeof String);
-    });
+  it('genSalt should return salt', async () => {
+    const salt = await service.genSalt();
+    expect(salt).toBeInstanceOf(typeof String);
   });
 
   it('hash should return ecrypted data', () => {

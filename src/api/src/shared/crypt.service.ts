@@ -6,15 +6,18 @@ import { from, Observable } from 'rxjs';
 export class CryptService {
   private readonly defaultRounds: number = 10;
 
-  public genSalt(rounds?: number): Observable<string> {
-    return from(genSalt(rounds || this.defaultRounds));
+  public async genSalt(rounds?: number): Promise<string> {
+    return await genSalt(rounds || this.defaultRounds);
   }
 
-  public compare(data: any, encrypted: string): Observable<boolean> {
-    return from(compare(data, encrypted));
+  public async compare(data: any, encrypted: string): Promise<boolean> {
+    return await compare(data, encrypted);
   }
 
-  public hash(data: any, saltOrRounds?: string | number): Observable<string> {
-    return from(hash(data, saltOrRounds || this.defaultRounds));
+  public async hash(
+    data: any,
+    saltOrRounds?: string | number,
+  ): Promise<string> {
+    return await hash(data, saltOrRounds || this.defaultRounds);
   }
 }

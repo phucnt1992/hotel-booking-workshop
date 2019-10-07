@@ -18,14 +18,14 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { Response } from 'express';
-import { EMPTY, Observable, throwError } from 'rxjs';
-import { catchError, concatMap, flatMap, map } from 'rxjs/operators';
 import { Operation } from 'fast-json-patch';
+import { EMPTY, Promise, throwError } from 'rxjs';
+import { catchError, concatMap, flatMap, map } from 'rxjs/operators';
 
 import { JsonPatchPipe } from '../shared/json-patch.pipe';
 
 import { Account } from './account.entity';
-import { AccountService } from './account.sevice';
+import { AccountService } from './account.service';
 import { AccountDto } from './dto/account.dto';
 
 const BASE_URL = 'accounts';
@@ -35,12 +35,12 @@ export class AccountController {
   constructor(private accountService: AccountService) {}
 
   @Get(':id')
-  public findOne(@Param('id') id: string): Observable<Account> {
+  public findOne(@Param('id') id: string): Promise<Account> {
     return this.accountService.findAccountById(id);
   }
 
   @Get()
-  public getAll(): Observable<Account[]> {
+  public getAll(): Promise<Account[]> {
     return this.accountService.listAccounts();
   }
 
@@ -65,7 +65,7 @@ export class AccountController {
   public updateOne(
     @Param('id') id: string,
     @Body(ValidationPipe) accountDto: AccountDto,
-  ): Observable<Account> {
+  ): Promise<Account> {
     return this.accountService.findAccountById(id).pipe(
       catchError(err => throwError(new NotFoundException())),
       concatMap(account =>
@@ -75,7 +75,7 @@ export class AccountController {
     );
   }
 
-  @Patch('id')
+  @Patch(':id')
   public patchOne(
     @Param('id') id: string,
     @Body(JsonPatchPipe) jsonPatch: Operation[],
@@ -83,7 +83,7 @@ export class AccountController {
 
   @All()
   @HttpCode(HttpStatus.METHOD_NOT_ALLOWED)
-  public all(): Observable<void> {
+  public all(): Promise<void> {
     return EMPTY;
   }
 }

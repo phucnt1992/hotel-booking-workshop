@@ -1,10 +1,12 @@
 import { DynamicModule, Module } from '@nestjs/common';
+import { AzureStorageModule } from '@nestjs/azure-storage';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { SharedModule } from '../shared/shared.module';
 
 import { DatabaseService } from './database.service';
 import { LoggerService } from './logger.service';
+import { StorageService } from './storage.service';
 
 @Module({})
 export class CoreModule {
@@ -15,6 +17,9 @@ export class CoreModule {
       providers: [LoggerService],
       exports: [
         LoggerService,
+        AzureStorageModule.withConfig(
+          @in
+        )
         TypeOrmModule.forRootAsync({
           useClass: DatabaseService,
         }),
