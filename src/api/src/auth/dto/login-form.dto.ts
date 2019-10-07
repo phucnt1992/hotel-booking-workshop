@@ -2,8 +2,8 @@ import { IsAlphanumeric, Length } from 'class-validator';
 
 export class LoginFormDto {
   @IsAlphanumeric()
-  username: string;
+  readonly username: string;
 
   @Length(8, 16)
-  password: string;
+  readonly password: string;
 }

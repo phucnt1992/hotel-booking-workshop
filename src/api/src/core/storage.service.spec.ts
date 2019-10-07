@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { StorageService } from './storage.service';
 
-import { EnvironmentService } from '../shared/environment.service';
+import { EnvironmentService } from '../shared';
 
 describe('StorageService', () => {
   let service: StorageService;

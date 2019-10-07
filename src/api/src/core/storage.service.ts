@@ -1,7 +1,7 @@
 import { AzureStorageOptions } from '@nestjs/azure-storage';
 import { Injectable } from '@nestjs/common';
 
-import { EnvironmentService } from '../shared/environment.service';
+import { EnvironmentService } from '../shared';
 
 @Injectable()
 export class StorageService {

@@ -3,7 +3,7 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 import { DatabaseService } from './database.service';
 
-import { EnvironmentService } from '../shared/environment.service';
+import { EnvironmentService } from '../shared';
 
 describe('DatabaseService', () => {
   let service: DatabaseService;
