@@ -4,15 +4,15 @@ import { ExtractJwt, Strategy, StrategyOptions } from 'passport-jwt';
 
 import { EnvironmentService } from '../shared';
 
-import { Payload, User } from './interfaces';
+import { User } from './interfaces';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(@Inject() environmentService: EnvironmentService) {
     const jwtStrategyOptions: StrategyOptions = {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      ignoreExpiration: false,
-      secretOrKey: environmentService.getEnv('JWT_SERECT'),
+      ignoreExpiration: true,
+      secretOrKey: environmentService.getEnv('JWT_REFRESH_SECRET'),
     };
     super(jwtStrategyOptions);
   }

@@ -1,21 +1,21 @@
 import {
   Body,
   Controller,
+  Get,
   Post,
+  Req,
   UnauthorizedException,
+  UseGuards,
   UsePipes,
   ValidationPipe,
-  UseGuards,
-  Get,
-  Req,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { Request } from 'express';
 import _ from 'lodash';
 
 import { AuthService } from './auth.service';
 import { LoginFormDto, TokenDto } from './dto';
 import { IntrospectResult, Payload, Token, User } from './interfaces';
-import { AuthGuard } from '@nestjs/passport';
-import { Request } from 'express';
 
 @Controller('auth')
 export class AuthController {
@@ -43,15 +43,13 @@ export class AuthController {
   public async introspect(
     @Body() tokenDto: TokenDto,
   ): Promise<IntrospectResult> {
-    const verify = (await this.authService.verifyAccessToken(
-      tokenDto.token,
-    )) as Payload;
+    const payload = await this.authService.verifyAccessToken(tokenDto.token);
 
-    const isActive = !_.isEmpty(verify);
+    const isActive = !_.isEmpty(payload);
 
     return {
       isActive,
-      sub: isActive ? verify.sub : null,
+      sub: isActive ? payload.sub : null,
     };
   }
 
@@ -63,7 +61,20 @@ export class AuthController {
 
   @Post('/refresh-token')
   @UsePipes(ValidationPipe)
-  public async refreshToken(): Promise<Token> {
+  @UseGuards(AuthGuard('refresh'))
+  public async refreshToken(@Body() tokenDto: TokenDto): Promise<Token> {
+    const payload = await this.authService.verifyRefreshToken(tokenDto.token);
 
+    if (_.isEmpty(payload)) {
+      throw new UnauthorizedException();
+    }
+
+    const result = await this.authService.login({
+      IsAdmin: payload.admin,
+      id: payload.sub,
+      username: payload.username,
+    });
+
+    return result;
   }
 }

@@ -2,9 +2,8 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
 import { SignOptions } from 'jsonwebtoken';
-import { Account } from '../account/account.entity';
 import { AccountService } from '../account/account.service';
-import { Payload, Token } from './interfaces';
+import { Payload, Token, User } from './interfaces';
 
 @Injectable()
 export class AuthService {
@@ -17,7 +16,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async validateUser(username: string, password: string): Promise<any> {
+  async validateUser(username: string, password: string): Promise<User> {
     const account = await this.usersService.findAccountByUsername(username, [
       'id',
       'username',
@@ -26,26 +25,34 @@ export class AuthService {
     ]);
 
     if (await this.usersService.checkPassword(account, password)) {
-      return account;
+      return {
+        id: account.id,
+        username: account.username,
+        IsAdmin: account.isAdmin,
+      };
     }
 
     return null;
   }
 
-  async verifyAccessToken(token: string): Promise<object> {
-    return await this.jwtService.verifyAsync(token);
+  async verifyAccessToken(token: string): Promise<Payload> {
+    return (await this.jwtService.verifyAsync(token)) as Payload;
   }
 
-  async verifyRefreshToken(token: string): Promise<object> {
-    return await this.jwtService.verifyAsync(token, this.RefreshTokenConfig);
+  async verifyRefreshToken(token: string): Promise<Payload> {
+    return (await this.jwtService.verifyAsync(
+      token,
+      this.RefreshTokenConfig,
+    )) as Payload;
   }
 
-  async login(account: Account): Promise<Token> {
+  async login(user: User): Promise<Token> {
     const payload: Payload = {
-      username: account.username,
-      sub: account.id,
-      admin: account.isAdmin,
+      username: user.username,
+      sub: user.id,
+      admin: user.IsAdmin,
     };
+
     return {
       accessToken: await this.jwtService.signAsync(payload),
       refreshToken: await this.jwtService.signAsync(

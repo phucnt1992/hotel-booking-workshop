@@ -7,7 +7,6 @@ import { AccountModule } from '../account/account.module';
 import { AuthService } from './auth.service';
 import { JwtFactoryService } from './jwt-factory.service';
 import { JwtStrategy } from './jwt-strategy.service';
-import { LocalStrategy } from './local-strategy.service';
 import { AuthController } from './auth.controller';
 
 @Module({
@@ -18,7 +17,7 @@ import { AuthController } from './auth.controller';
       useClass: JwtFactoryService,
     }),
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy],
+  providers: [AuthService, JwtStrategy],
   exports: [AuthService],
   controllers: [AuthController],
 })

@@ -20,21 +20,21 @@ export class Account {
   @Column('text', { select: false, nullable: false })
   salt: string;
 
-  @Column('bool', { default: true })
-  isAdmin: string;
+  @Column('bool', { name: 'is_admin', default: true })
+  isAdmin: boolean;
 
   @CreateDateColumn()
   created: Date;
 
   @UpdateDateColumn()
   modified: Date;
-    
-  @Column('text')
+
+  @Column('text', { name: 'first_name' })
   firstName: string;
 
-  @Column('text')
+  @Column('text', { name: 'last_name' })
   lastName: string;
 
-  @Column('text')
+  @Column('text', { name: 'avatar_url' })
   avatarUrl: string;
 }

@@ -17,9 +17,6 @@ export class CoreModule {
       providers: [LoggerService],
       exports: [
         LoggerService,
-        AzureStorageModule.withConfig(
-          @in
-        )
         TypeOrmModule.forRootAsync({
           useClass: DatabaseService,
         }),
