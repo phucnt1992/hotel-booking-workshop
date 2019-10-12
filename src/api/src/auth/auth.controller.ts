@@ -77,4 +77,9 @@ export class AuthController {
 
     return result;
   }
+
+  @Post('/revoke-token')
+  @UsePipes(ValidationPipe)
+  @UseGuards(AuthGuard('jwt'))
+  public async revokeToken(@Body() tokenDto: TokenDto): Promise<void> {}
 }

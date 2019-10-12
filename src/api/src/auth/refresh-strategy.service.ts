@@ -7,7 +7,7 @@ import { EnvironmentService } from '../shared';
 import { User } from './interfaces';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
+export class RefreshStrategy extends PassportStrategy(Strategy) {
   constructor(@Inject() environmentService: EnvironmentService) {
     const jwtStrategyOptions: StrategyOptions = {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),

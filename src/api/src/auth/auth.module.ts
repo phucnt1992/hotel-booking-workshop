@@ -4,10 +4,10 @@ import { PassportModule } from '@nestjs/passport';
 
 import { AccountModule } from '../account/account.module';
 
+import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtFactoryService } from './jwt-factory.service';
 import { JwtStrategy } from './jwt-strategy.service';
-import { AuthController } from './auth.controller';
 
 @Module({
   imports: [

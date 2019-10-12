@@ -14,7 +14,8 @@ describe('AccountController (e2e)', () => {
   let adminAccount: Account;
   let account: Account;
 
-  const BASE_URL = 'accounts';
+  const BASE_URL = '/api/auth';
+
   beforeAll(async () => {
     adminAccount = await accountfactory
       .for(Account)
