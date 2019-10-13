@@ -5,8 +5,8 @@ import request from 'supertest';
 
 import { Account } from 'src/account';
 import { AuthModule } from 'src/auth';
-import { CoreModule } from 'src/core';
 import { SharedModule } from 'src/shared';
+
 import { accountfactory, AdminState } from './factory';
 
 describe('AccountController (e2e)', () => {
@@ -25,7 +25,7 @@ describe('AccountController (e2e)', () => {
     account = await accountfactory.for(Account).create();
 
     const module = await Test.createTestingModule({
-      imports: [CoreModule.forRoot(), SharedModule, AuthModule],
+      imports: [SharedModule, AuthModule],
     }).compile();
 
     app = module.createNestApplication();
