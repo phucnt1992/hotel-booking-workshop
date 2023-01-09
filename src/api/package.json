@@ -24,7 +24,7 @@
     "@nestjs/azure-storage": "^1.0.2",
     "@nestjs/common": "^6.8.2",
     "@nestjs/core": "^6.8.2",
-    "@nestjs/jwt": "^6.1.1",
+    "@nestjs/jwt": "^10.0.1",
     "@nestjs/passport": "^6.1.0",
     "@nestjs/platform-express": "^6.8.2",
     "@nestjs/terminus": "^6.5.2",
